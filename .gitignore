@@ -5,7 +5,6 @@ tailscale/
 
 # Local environment files
 .env
-.env.*
 
 # Editor / OS noise
 *.swp
