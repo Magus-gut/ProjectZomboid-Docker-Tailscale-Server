@@ -1,0 +1,19 @@
+# Local server data (world saves, configs, game files)
+server-data/
+server-files/
+tailscale/
+
+# Local environment files
+.env
+.env.*
+
+# Editor / OS noise
+*.swp
+*.swo
+*~
+.DS_Store
+.idea/
+.vscode/
+
+# Vibe coder stuff
+WARP.md

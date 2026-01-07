@@ -1,0 +1,33 @@
+services:
+  tailscale:
+    image: tailscale/tailscale:latest
+    container_name: ts-pz
+    hostname: pz-server
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - ./tailscale:/var/lib/tailscale
+      - /dev/net/tun:/dev/net/tun
+    env_file:
+      - .env
+    environment:
+      TS_STATE_DIR: /var/lib/tailscale
+      TS_USERSPACE: "false"
+
+  projectzomboid:
+    image: indifferentbroccoli/projectzomboid-server-docker:latest
+    container_name: pz-b42
+    depends_on:
+      - tailscale
+    network_mode: "service:tailscale"
+    restart: unless-stopped
+    stop_grace_period: 30s
+
+    env_file:
+      - .env
+
+    volumes:
+      - ./server-files:/project-zomboid
+      - ./server-data:/project-zomboid-config
