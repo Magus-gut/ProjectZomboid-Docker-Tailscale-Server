@@ -103,6 +103,8 @@ Once that’s true for a given client machine:
 
 Because the game server shares the network namespace with the Tailscale container (`network_mode: "service:tailscale"), the game ports are reachable directly via that Tailscale IP **but only to devices that are part of your tailnet and currently connected to Tailscale**.
 
+> **WSL users:** If you are hosting this server from inside WSL on Windows, Tailscale will treat Windows and the WSL distro as **separate machines**. Install and connect Tailscale both on Windows and inside the WSL environment where you run Docker, and make sure both nodes are authorized in your tailnet.
+
 ## Managing data and updates
 
 - **World data & config**: stored under `server-data/`
